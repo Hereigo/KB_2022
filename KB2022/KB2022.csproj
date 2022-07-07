@@ -27,7 +27,7 @@
     <None Include="wwwroot\sbAdmin2\pages\forms.html" />
     <None Include="wwwroot\sbAdmin2\pages\grid.html" />
     <None Include="wwwroot\sbAdmin2\pages\icons.html" />
-    <None Include="wwwroot\sbAdmin2\pages\index.html.deprec" />
+    <None Include="wwwroot\sbAdmin2\pages\index.html" />
     <None Include="wwwroot\sbAdmin2\pages\login.html" />
     <None Include="wwwroot\sbAdmin2\pages\morris.html" />
     <None Include="wwwroot\sbAdmin2\pages\notifications.html" />

@@ -7,31 +7,20 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>@ViewData["Title"] - KB2022</title>
-
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     @*<link rel="stylesheet" href="~/KB2022.styles.css" asp-append-version="true" />*@
-
     <link href="~/sbAdmin2/vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
-    <!-- MetisMenu CSS -->
     <link href="~/sbAdmin2/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
     <link href="~/sbAdmin2/dist/css/sb-admin-2.css" rel="stylesheet">
-    <!-- Morris Charts CSS -->
     <link href="~/sbAdmin2/vendor/morrisjs/morris.css" rel="stylesheet">
-    <!-- Custom Fonts -->
     <link href="~/sbAdmin2/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
 </head>
 <body>
 
     <div id="wrapper">
 
         <!-- Navigation -->
+
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -42,6 +31,7 @@
                 </button>
                 <a class="navbar-brand" href="/">SB Admin v2.0</a>
             </div>
+        
             <!-- /.navbar-header -->
 
             <ul class="nav navbar-top-links navbar-right">
@@ -95,7 +85,9 @@
                     </ul>
                     <!-- /.dropdown-messages -->
                 </li>
+
                 <!-- /.dropdown -->
+                
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-tasks fa-fw"></i> <i class="fa fa-caret-down"></i>
@@ -174,7 +166,9 @@
                     </ul>
                     <!-- /.dropdown-tasks -->
                 </li>
+
                 <!-- /.dropdown -->
+                
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-bell fa-fw"></i> <i class="fa fa-caret-down"></i>
@@ -234,7 +228,9 @@
                     </ul>
                     <!-- /.dropdown-alerts -->
                 </li>
+
                 <!-- /.dropdown -->
+                
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
@@ -248,13 +244,16 @@
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                            <a href="/"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
                 </li>
+
                 <!-- /.dropdown -->
+
             </ul>
+
             <!-- /.navbar-top-links -->
 
             <div class="navbar-default sidebar" role="navigation">
@@ -272,46 +271,46 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a href="~/sbAdmin2/pages/index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="flot.html">Flot Charts</a>
+                                    <a href="~/sbAdmin2/pages/flot.html">Flot Charts</a>
                                 </li>
                                 <li>
-                                    <a href="morris.html">Morris.js Charts</a>
+                                    <a href="~/sbAdmin2/pages/morris.html">Morris.js Charts</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="tables.html"><i class="fa fa-table fa-fw"></i> Tables</a>
+                            <a href="~/sbAdmin2/pages/tables.html"><i class="fa fa-table fa-fw"></i> Tables</a>
                         </li>
                         <li>
-                            <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Forms</a>
+                            <a href="~/sbAdmin2/pages/forms.html"><i class="fa fa-edit fa-fw"></i> Forms</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-wrench fa-fw"></i> UI Elements<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="panels-wells.html">Panels and Wells</a>
+                                    <a href="~/sbAdmin2/pages/panels-wells.html">Panels and Wells</a>
                                 </li>
                                 <li>
-                                    <a href="buttons.html">Buttons</a>
+                                    <a href="~/sbAdmin2/pages/buttons.html">Buttons</a>
                                 </li>
                                 <li>
-                                    <a href="notifications.html">Notifications</a>
+                                    <a href="~/sbAdmin2/pages/notifications.html">Notifications</a>
                                 </li>
                                 <li>
-                                    <a href="typography.html">Typography</a>
+                                    <a href="~/sbAdmin2/pages/typography.html">Typography</a>
                                 </li>
                                 <li>
-                                    <a href="icons.html"> Icons</a>
+                                    <a href="~/sbAdmin2/pages/icons.html"> Icons</a>
                                 </li>
                                 <li>
-                                    <a href="grid.html">Grid</a>
+                                    <a href="~/sbAdmin2/pages/grid.html">Grid</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -350,10 +349,10 @@
                             <a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="blank.html">Blank Page</a>
+                                    <a href="~/sbAdmin2/pages/blank.html">Blank Page</a>
                                 </li>
                                 <li>
-                                    <a href="login.html">Login Page</a>
+                                    <a href="~/sbAdmin2/pages/login.html">Login Page</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -366,14 +365,15 @@
         </nav>
 
         <!-- B O D Y !!!!!!!!!!!!! -->
-        
+
+
         @RenderBody()
+
 
         <!-- B O D Y  - E N D !!!! -->
 
     </div>
     <!-- /#wrapper -->
-
     @*<footer class="border-top footer text-muted">
     <div class="container">
     &copy; 2022 - KB2022 - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
@@ -382,16 +382,14 @@
 
     <script src="~/sbAdmin2/vendor/jquery/jquery.min.js"></script>
     <script src="~/sbAdmin2/vendor/bootstrap/js/bootstrap.min.js"></script>
-    <!-- Metis Menu Plugin JavaScript -->
     <script src="~/sbAdmin2/vendor/metisMenu/metisMenu.min.js"></script>
-    <!-- Morris Charts JavaScript -->
     <script src="~/sbAdmin2/vendor/raphael/raphael.min.js"></script>
     <script src="~/sbAdmin2/vendor/morrisjs/morris.min.js"></script>
     <script src="~/sbAdmin2/data/morris-data.js"></script>
-    <!-- Custom Theme JavaScript -->
     <script src="~/sbAdmin2/dist/js/sb-admin-2.js"></script>
 
     <script src="~/js/site.js" asp-append-version="true"></script>
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
