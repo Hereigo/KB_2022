@@ -3,23 +3,19 @@
 }
 
 <div id="page-wrapper">
-
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">Code Highlighting</h1>
         </div>
-        <!-- /.col-lg-12 -->
     </div>
-    <!-- /.row -->
+
 
     <div class="row">
-        <div class="col-lg-12">
-
+        <div class="col-lg-6 col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <i class="fa fa-h-square fa-fw"></i> Highlight.js examples:
                 </div>
-                <!-- /.panel-heading -->
                 <div class="panel-body">
 
 
@@ -71,14 +67,70 @@ CLOSE CUR;
 };
 </code></pre>
 
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-lg-6 col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-h-square fa-fw"></i> Highlight.js examples:
+                </div>
+                <div class="panel-body">
+
+
+                    <h4>Simple C# Code example:</h4>
+<pre class="prenew"><code class="language-csharp hljs">
+public async Task<IActionResult> OnPostAsync(string returnUrl = null)
+{
+    returnUrl = returnUrl ?? Url.Content("~/");
+    ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync())
+                                          .ToList();
+    if (ModelState.IsValid)
+    {
+        var user = new IdentityUser { UserName = Input.Email, Email = Input.Email };
+        var result = await _userManager.CreateAsync(user, Input.Password);
+        if (result.Succeeded)
+        {
+            _logger.LogInformation("User created a new account with password.");
+
+            var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+            code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
+            var callbackUrl = Url.Page(
+                "/Account/ConfirmEmail",
+                pageHandler: null,
+                values: new { area = "Identity", userId = user.Id, code = code },
+                protocol: Request.Scheme);
+
+            await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
+                $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+
+            if (_userManager.Options.SignIn.RequireConfirmedAccount)
+            {
+                return RedirectToPage("RegisterConfirmation", 
+                                      new { email = Input.Email });
+            }
+            else
+            {
+                await _signInManager.SignInAsync(user, isPersistent: false);
+                return LocalRedirect(returnUrl);
+            }
+        }
+        foreach (var error in result.Errors)
+        {
+            ModelState.AddModelError(string.Empty, error.Description);
+        }
+    }
+
+    // If we got this far, something failed, redisplay form
+    return Page();
+}
+</code></pre>
+
 
                 </div>
-                <!-- /.panel-body -->
             </div>
-            <!-- /.panel -->
-
         </div>
     </div>
-    <!-- /.row -->
 </div>
-<!-- /#page-wrapper -->
