@@ -8,29 +8,14 @@
     <meta name="author" content="">
     <title>@ViewData["Title"] - KB2022</title>
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    @*<link rel="stylesheet" href="~/KB2022.styles.css" asp-append-version="true" />*@
     <link href="~/sbAdmin2/vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
     <link href="~/sbAdmin2/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
     <link href="~/sbAdmin2/dist/css/sb-admin-2.css" rel="stylesheet">
     <link href="~/sbAdmin2/vendor/morrisjs/morris.css" rel="stylesheet">
     <link href="~/sbAdmin2/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/default.min.css" rel="stylesheet">
-    
-    
-    <style>
-        pre.prenew {
-            margin-top:.5rem;
-            padding:0;
-        }
-        pre.prenew > code {
-            padding-top:0;
-        }
-    </style>
-
-
 </head>
 <body>
-
     <div id="wrapper">
 
         <!-- Navigation -->
@@ -45,7 +30,7 @@
                 </button>
                 <a class="navbar-brand" href="/">SB Admin v2.0</a>
             </div>
-        
+
             <!-- /.navbar-header -->
 
             <ul class="nav navbar-top-links navbar-right">
@@ -101,7 +86,7 @@
                 </li>
 
                 <!-- /.dropdown -->
-                
+
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-tasks fa-fw"></i> <i class="fa fa-caret-down"></i>
@@ -182,7 +167,7 @@
                 </li>
 
                 <!-- /.dropdown -->
-                
+
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-bell fa-fw"></i> <i class="fa fa-caret-down"></i>
@@ -244,7 +229,7 @@
                 </li>
 
                 <!-- /.dropdown -->
-                
+
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
@@ -263,9 +248,7 @@
                     </ul>
                     <!-- /.dropdown-user -->
                 </li>
-
                 <!-- /.dropdown -->
-
             </ul>
 
             <!-- /.navbar-top-links -->
@@ -379,11 +362,7 @@
         </nav>
 
         <!-- B O D Y !!!!!!!!!!!!! -->
-
-
         @RenderBody()
-
-
         <!-- B O D Y  - E N D !!!! -->
 
     </div>
@@ -403,7 +382,6 @@
     <script src="~/sbAdmin2/dist/js/sb-admin-2.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
     <script>hljs.highlightAll();</script>
-
     <script src="~/js/site.js" asp-append-version="true"></script>
 
     @await RenderSectionAsync("Scripts", required: false)

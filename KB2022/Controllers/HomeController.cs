@@ -4,6 +4,13 @@ using System.Diagnostics;
 
 namespace KB2022.Controllers
 {
+    public class CodeDefinition
+    {
+        public string CodeFile { get; set; }
+        public string CodeStyle { get; set; }
+        public string Title { get; set; }
+    }
+
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -15,7 +22,29 @@ namespace KB2022.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var data = new List<CodeDefinition>
+            {
+                new CodeDefinition
+                {
+                    CodeFile = "_SQL_01",
+                    CodeStyle = "language-sql",
+                    Title = "Simple SQL Code example"
+                },
+                new CodeDefinition
+                {
+                    CodeFile = "_CS_01",
+                    CodeStyle = "language-csharp",
+                    Title = "Simple C# Code example"
+                },
+                new CodeDefinition
+                {
+                    CodeFile = "_JS_01",
+                    CodeStyle = "language-js",
+                    Title = "Simple JS Code example"
+                }
+            };
+
+            return View(data);
         }
 
         public IActionResult Privacy()
