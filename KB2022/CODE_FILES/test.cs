@@ -1,7 +1,4 @@
-﻿@model string
-
-<code class="@Model">
-
+﻿//...
 public async Task<IActionResult> OnPostAsync(string returnUrl = null)
 {
     returnUrl = returnUrl ?? Url.Content("~/");
@@ -28,7 +25,7 @@ public async Task<IActionResult> OnPostAsync(string returnUrl = null)
 
             if (_userManager.Options.SignIn.RequireConfirmedAccount)
             {
-                return RedirectToPage("RegisterConfirmation", 
+                return RedirectToPage("RegisterConfirmation",
                                       new { email = Input.Email });
             }
             else
@@ -45,5 +42,3 @@ public async Task<IActionResult> OnPostAsync(string returnUrl = null)
     // If we got this far, something failed, redisplay form
     return Page();
 }
-
-</code>

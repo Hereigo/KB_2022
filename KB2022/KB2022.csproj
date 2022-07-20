@@ -7,6 +7,23 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="CODE_FILES\test.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="CODE_FILES\test.js" />
+    <None Remove="CODE_FILES\test.sql" />
+    <None Remove="Views\Home\_WRAPPER.cshtml.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="CODE_FILES\test.sql" />
+    <Content Include="CODE_FILES\test.js" />
+    <Content Include="Views\Home\_WRAPPER.cshtml.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="CODE_FILES\test.cs" />
     <None Include="wwwroot\sbAdmin2\.gitignore" />
     <None Include="wwwroot\sbAdmin2\data\flot-data.js" />
     <None Include="wwwroot\sbAdmin2\data\morris-data.js" />

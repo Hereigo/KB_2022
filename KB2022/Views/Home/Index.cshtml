@@ -1,4 +1,4 @@
-﻿@model List<KB2022.Controllers.CodeDefinition>
+﻿@model IEnumerable<KB2022.Models.CodeDefinition>
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -13,7 +13,7 @@
 
         @foreach (var item in Model)
         {
-            @Html.Partial("_WRAPPER", item)
+            @Html.Partial("_CODE_WRAPPER", item)
         }
 
     </div>

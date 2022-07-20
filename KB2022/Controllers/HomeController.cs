@@ -4,52 +4,35 @@ using System.Diagnostics;
 
 namespace KB2022.Controllers
 {
-    public class CodeDefinition
-    {
-        public string CodeFile { get; set; }
-        public string CodeStyle { get; set; }
-        public string Title { get; set; }
-    }
-
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IWebHostEnvironment webHostEnvironment)
         {
             _logger = logger;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         public IActionResult Index()
         {
-            var data = new List<CodeDefinition>
+            var data = new List<CodeDefinition>();
+            var wwwrootDir = _webHostEnvironment.ContentRootPath;
+            var path = Path.Combine(wwwrootDir, "CODE_FILES");
+
+            foreach (var filePath in Directory.GetFiles(path))
             {
-                new CodeDefinition
+                var exten = Path.GetExtension(filePath);
+                data.Add(new CodeDefinition
                 {
-                    CodeFile = "_SQL_01",
-                    CodeStyle = "language-sql",
-                    Title = "Simple SQL Code example"
-                },
-                new CodeDefinition
-                {
-                    CodeFile = "_CS_01",
-                    CodeStyle = "language-csharp",
-                    Title = "Simple C# Code example"
-                },
-                new CodeDefinition
-                {
-                    CodeFile = "_JS_01",
-                    CodeStyle = "language-js",
-                    Title = "Simple JS Code example"
-                }
-            };
+                    CodeFile = filePath,
+                    CodeStyle = "language-" + exten,
+                    Title = "Simple " + exten.ToUpper() + " Code example"
+                });
+            }
 
             return View(data);
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

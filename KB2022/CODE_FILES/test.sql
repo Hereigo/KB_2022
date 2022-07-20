@@ -1,7 +1,4 @@
-﻿@model string
-
-<code class="@Model">
-
+﻿--...
 CREATE PROCEDURE pr_cursor_template1()
 BEGIN
 DECLARE aGOODSLIST_ID INT;
@@ -31,6 +28,3 @@ END IF;
 END LOOP;
 
 CLOSE CUR;
-};
-
-</code>

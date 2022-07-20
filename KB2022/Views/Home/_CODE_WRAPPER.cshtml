@@ -1,0 +1,22 @@
+﻿@model KB2022.Models.CodeDefinition
+@{
+    var fileBody = System.IO.File.ReadAllText(Model.CodeFile);
+}
+
+<div class="col-lg-6 col-md-12">
+    <div class="panel panel-default">
+        <div class="panel-body">
+
+            <h4>@Model.Title:</h4>
+
+            <pre class="prenew">
+                <code class="@Model.CodeStyle">
+
+                    @Html.Raw(fileBody)
+
+                </code>
+            </pre>
+
+        </div>
+    </div>
+</div>
