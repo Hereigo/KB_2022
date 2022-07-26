@@ -7,23 +7,21 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="CODE_FILES\test.cs" />
+    <Compile Remove="CODE_FILES\**" />
+    <Content Remove="CODE_FILES\**" />
+    <EmbeddedResource Remove="CODE_FILES\**" />
+    <None Remove="CODE_FILES\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="CODE_FILES\test.js" />
-    <None Remove="CODE_FILES\test.sql" />
     <None Remove="Views\Home\_WRAPPER.cshtml.txt" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="CODE_FILES\test.sql" />
-    <Content Include="CODE_FILES\test.js" />
     <Content Include="Views\Home\_WRAPPER.cshtml.txt" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="CODE_FILES\test.cs" />
     <None Include="wwwroot\sbAdmin2\.gitignore" />
     <None Include="wwwroot\sbAdmin2\data\flot-data.js" />
     <None Include="wwwroot\sbAdmin2\data\morris-data.js" />
@@ -187,6 +185,10 @@
     <None Include="wwwroot\sbAdmin2\vendor\morrisjs\morris.min.js" />
     <None Include="wwwroot\sbAdmin2\vendor\raphael\raphael.js" />
     <None Include="wwwroot\sbAdmin2\vendor\raphael\raphael.min.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="CODE_FILES\" />
   </ItemGroup>
 
 </Project>

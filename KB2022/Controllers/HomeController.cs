@@ -1,6 +1,12 @@
-﻿using KB2022.Models;
+﻿using System;
+using System.IO;
+using System.Linq;
+using System.IO;
+using System.Text;
+using KB2022.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using Microsoft.AspNetCore.Hosting.Server;
 
 namespace KB2022.Controllers
 {
@@ -23,12 +29,14 @@ namespace KB2022.Controllers
 
             foreach (var filePath in Directory.GetFiles(path))
             {
-                var exten = Path.GetExtension(filePath);
+                var fileExten = Path.GetExtension(filePath);
+                var fileTitle = System.IO.File.ReadLines(filePath).First().Replace("//", "").Trim();
+
                 data.Add(new CodeDefinition
                 {
                     CodeFile = filePath,
-                    CodeStyle = "language-" + exten,
-                    Title = "Simple " + exten.ToUpper() + " Code example"
+                    CodeStyle = "language-" + fileExten,
+                    Title = fileTitle
                 });
             }
 
