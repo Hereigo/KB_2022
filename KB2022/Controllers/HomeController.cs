@@ -1,12 +1,6 @@
-﻿using System;
-using System.IO;
-using System.Linq;
-using System.IO;
-using System.Text;
-using KB2022.Models;
+﻿using KB2022.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-using Microsoft.AspNetCore.Hosting.Server;
 
 namespace KB2022.Controllers
 {
