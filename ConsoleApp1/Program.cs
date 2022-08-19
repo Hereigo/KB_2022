@@ -1,89 +1,82 @@
-﻿// PUBLISH SUBSCRIBE PATTERN (TO LOOSE COUPLING BETWEEN COMPONENTS)
-public class MyEventArgs : EventArgs
+﻿// ATTRIBUTE USAGE
+
+[AttributeUsage(AttributeTargets.All)]
+public class MyAttAttribute : Attribute
 {
-    public int Value { get; set; }
-    public MyEventArgs(int value)
+    // Provides name of the member
+    private string name;
+
+    // Provides description of the member
+    private string action;
+
+    // Constructor
+    public MyAttAttribute(string name, string action)
     {
-        Value = value;
+        this.name = name;
+        this.action = action;
+    }
+
+    // property to get name
+    public string Name
+    {
+        get { return name; }
+    }
+
+    // property to get description
+    public string Action
+    {
+        get { return action; }
     }
 }
 
-public class PublisherSimple
+class Student
 {
-    // ON_CHANGE PROPERTY: containing all the list of subscribers callback methods
-    public Action? OnChange_SubsList { get; set; }
-    public void Raise()
+    // Private fields of class Student
+    private int rollNo;
+    private string stuName;
+    private double marks;
+
+    // The attribute MyAttribute is applied 
+    // to methods of class Student
+    // Providing details of their utility
+    [MyAtt("Modifier", "Assigns the Student Details")]
+    public void setDetails(int r, string sn, double m)
     {
-        OnChange_SubsList?.Invoke();
+        rollNo = r;
+        stuName = sn;
+        marks = m;
+    }
+
+    [MyAttAttribute("Accessor", "Returns Value of rollNo")]
+    public int getRollNo()
+    {
+        return rollNo;
+    }
+
+    [MyAttAttribute("Accessor", "Returns Value of stuName")]
+    public string getStuName()
+    {
+        return stuName;
+    }
+
+    [MyAttAttribute("Accessor", "Returns Value of marks")]
+    public double getMarks()
+    {
+        return marks;
     }
 }
 
-public class PubEventHandle
+class TestAttributes
 {
-    // SUBSCR <=> PUBLISH - BROKER:
-    public event EventHandler<MyEventArgs> OnChange_SubsList = delegate { };
-    public void Raise()
-    {
-        OnChange_SubsList(this, new MyEventArgs(33));
-    }
-}
-
-public class PubExcepHandle
-{
-    public event EventHandler<MyEventArgs> OnChange_SubsList = delegate { };
-    public void Raise()
-    {
-        MyEventArgs eventArgs = new MyEventArgs(33);
-        List<Exception> exceptions = new List<Exception>();
-        foreach (Delegate handler in OnChange_SubsList.GetInvocationList())
-        {
-            try
-            {
-                handler.DynamicInvoke(this, eventArgs);
-            }
-            catch (Exception e)
-            {
-                exceptions.Add(e);
-            }
-        }
-        if (exceptions.Any())
-        {
-            // throw new AggregateException(exceptions);
-            Console.WriteLine(
-                "\r\nExceptions!!! (are processing out of Events-Handling) ...");
-        }
-    }
-}
-
-public static class Program
-{
+    // Main Method
     static void Main()
     {
-        PublisherSimple p = new();
-        PubEventHandle peh = new();
-        PubExcepHandle pxh = new();
+        Student s = new Student();
+        s.setDetails(1, "Taylor", 92.5);
 
-        // REGISTER SUBSCRIBERS FOR EVENT:
-
-        p.OnChange_SubsList += () => Console.WriteLine("Subscr.1!");
-        p.OnChange_SubsList += () => Console.WriteLine("Subscr.2!");
-
-        peh.OnChange_SubsList += (sender, eArgs) => Console.WriteLine("Subscr.21! Val:" + eArgs.Value);
-        // peh.OnChange_SubsList += (sender, eArgs) => throw new Exception(); - THROW HERE !!!
-        peh.OnChange_SubsList += (sender, eArgs) => Console.WriteLine("Subscr.23! Val:" + eArgs.Value);
-
-        pxh.OnChange_SubsList += (sender, eArgs) => Console.WriteLine("Subscr.31! Val:" + eArgs.Value);
-        pxh.OnChange_SubsList += (sender, eArgs) => throw new Exception(); // Exceptions Handled
-        pxh.OnChange_SubsList += (sender, eArgs) => throw new Exception(); // ... by Publisger.
-        pxh.OnChange_SubsList += (sender, eArgs) => Console.WriteLine("Subscr.34! Val:" + eArgs.Value);
-
-        // RAISE THE EVENT:
-
-        p.Raise();
-        peh.Raise();
-        pxh.Raise();
-
-        Console.WriteLine("\r\nAll done.");
-        Console.ReadLine();
+        Console.WriteLine("Student Details");
+        Console.WriteLine("Roll Number : " + s.getRollNo());
+        Console.WriteLine("Name : " + s.getStuName());
+        Console.WriteLine("Marks : " + s.getMarks());
     }
 }
