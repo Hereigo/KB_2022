@@ -32,12 +32,7 @@ namespace TrackYourself
             MyTimer.Tick += (sndr, evnt) => MyTimer_Tick(sndr, evnt);
             MyTimer.Start();
 
-            List<string>? categories = null;
-
-            using (var db = new Data.MyDbContext())
-                categories = db.RecordCategories?.Select(c => c.Name)?.ToList();
-
-            comboBox1.DataSource = categories;
+            comboBox1.DataSource = Data.AppDbAccessor.GetCategories();
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)

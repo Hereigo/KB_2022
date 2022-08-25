@@ -2,13 +2,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace TrackYourself.Data
 {
-    public class MyDbContext : DbContext
+    public class AppDbContext : DbContext
     {
         public DbSet<RecordCategory> RecordCategories => Set<RecordCategory>();
 
         public DbSet<Record> Records => Set<Record>();
 
-        public MyDbContext() => Database.EnsureCreated();
+        public AppDbContext() => Database.EnsureCreated();
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionBuilder)
         {
