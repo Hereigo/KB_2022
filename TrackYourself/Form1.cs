@@ -2,14 +2,14 @@ namespace TrackYourself
 {
     public partial class Form1 : Form
     {
-        private const int _width = 251;
-        private const int _bigHeight = 314;
-        private const int _smallHeight = 73;
+        private const int _width = 243;
+        private const int _bigHeight = 260;
+        private const int _smallHeight = 85;
+        private static string _selected = string.Empty;
 
         public Form1()
         {
             InitializeComponent();
-            panel1.Visible = false;
             // this.ControlBox = false; // Disable CloseButton.
             Width = _width;
             Height = _smallHeight;
@@ -17,12 +17,11 @@ namespace TrackYourself
 
         private void MyTimer_Tick(object sender, EventArgs e)
         {
-            Text = DateTime.Now.ToString("HH:mm:ss");
+            Text = _selected + " - " + DateTime.Now.ToString("HH:mm:ss");
         }
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            panel1.Visible = !panel1.Visible;
             Height = Height == _smallHeight ? _bigHeight : _smallHeight;
         }
 
@@ -32,6 +31,18 @@ namespace TrackYourself
             MyTimer.Interval = 1000;
             MyTimer.Tick += (sndr, evnt) => MyTimer_Tick(sndr, evnt);
             MyTimer.Start();
+
+            List<string>? categories = null;
+
+            using (var db = new Data.MyDbContext())
+                categories = db.RecordCategories?.Select(c => c.Name)?.ToList();
+
+            comboBox1.DataSource = categories;
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            _selected = (string)comboBox1.SelectedValue;
         }
     }
 }
