@@ -1,4 +1,6 @@
-﻿namespace TrackYourself.Data
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace TrackYourself.Data
 {
     internal static class AppDbAccessor
     {
@@ -17,11 +19,32 @@
             }
         }
 
-        internal static List<string>? GetCategories()
+        internal static List<string>? GetCategoriesNames()
         {
-            using (var db = new Data.AppDbContext())
-                return 
-                    db.RecordCategories?.Select(c => c.Name)?.ToList();
+            using var db = new AppDbContext();
+            return
+                db.RecordCategories?.Select(c => c.Name)?.ToList();
+        }
+
+        internal static void RecordSave(Record rec)
+        {
+            using var db = new AppDbContext();
+            db.Records.Add(rec);
+            db.SaveChanges();
+        }
+
+        internal static void RecordSave2(string selected, DateTime selectedStart, TimeSpan timeSpan)
+        {
+            using var db = new AppDbContext();
+            var cat = db.RecordCategories.First(c => c.Name == selected);
+            var rec = new Record
+            {
+                RecordCategory = cat,
+                StartTime = selectedStart,
+                TimeSpent = timeSpan
+            };
+            db.Records.Add(rec);
+            db.SaveChanges();
         }
     }
 }

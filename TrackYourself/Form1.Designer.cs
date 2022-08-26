@@ -56,10 +56,10 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(12, 41);
+            this.textBox1.Location = new System.Drawing.Point(12, 50);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(154, 244);
+            this.textBox1.Size = new System.Drawing.Size(154, 235);
             this.textBox1.TabIndex = 5;
             // 
             // Form1
@@ -73,7 +73,7 @@
             this.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Location = new System.Drawing.Point(1600, 25);
+            this.Location = new System.Drawing.Point(1300, 25);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Form1";
