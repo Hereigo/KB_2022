@@ -4,21 +4,22 @@ namespace TrackYourself
 {
     public partial class Form1 : Form
     {
-        private const int width = 196;
         private const int bigHeight = 336;
+        private const int bigWidth = 795;
         private const int smallHeight = 85;
+        private const int smallWidth = 196;
 
-        private static string selected = string.Empty;
         private static DateTime selectedStart;
         private static int hours;
         private static int minutes;
         private static int seconds;
+        private static string selected = string.Empty;
 
         public Form1()
         {
             InitializeComponent();
             // this.ControlBox = false; // Disable CloseButton.
-            Width = width;
+            Width = smallWidth;
             Height = smallHeight;
         }
 
@@ -54,13 +55,8 @@ namespace TrackYourself
 
         private void ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // TODO
             if (!string.IsNullOrEmpty(selected)) // TEMPORARY !!!!!!!!!!!!!!!! && (hours > 0 || minutes > 1)) !!!!!!!!!!!!!!!!!!!!!!
             {
-                // TODO
-                // TEMPORARY !!!!!
-                textBox1.Text += $"{selectedStart.ToShortTimeString()} - {selected} - {hours}:{minutes}:{seconds}\r\n";
-
                 AppDbAccessor.RecordSave2(selected, selectedStart, new TimeSpan(hours, minutes, seconds));
             }
 
@@ -73,7 +69,34 @@ namespace TrackYourself
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            Height = Height == smallHeight ? bigHeight : smallHeight;
+            var changeSize = bigWidth - smallWidth;
+
+            if (Height == smallHeight)
+            {
+                Height = bigHeight;
+                Width = bigWidth;
+                Location = DecreaseX(Location, changeSize);
+                button1.Location = IncreaseX(button1.Location, changeSize);
+                comboBox1.Location = IncreaseX(comboBox1.Location, changeSize);
+            }
+            else
+            {
+                Height = smallHeight;
+                Width = smallWidth;
+                Location = IncreaseX(Location, changeSize);
+                button1.Location = DecreaseX(button1.Location, changeSize);
+                comboBox1.Location = DecreaseX(comboBox1.Location, changeSize);
+            }
+        }
+
+        private static Point DecreaseX(Point location, int changeSize)
+        {
+            return new Point(location.X - changeSize, location.Y);
+        }
+
+        private static Point IncreaseX(Point location, int changeSize)
+        {
+            return new Point(location.X + changeSize, location.Y);
         }
     }
 }

@@ -11,7 +11,7 @@ namespace TrackYourself.Data
 
         public DateTime StartTime { get; set; }
 
-        public int MinutesLength { get; set; }
+        public TimeSpan TimeSpent { get; internal set; }
 
         public RecordCategory? RecordCategory { get; set; }
     }
