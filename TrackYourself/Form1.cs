@@ -13,7 +13,7 @@ namespace TrackYourself
         private static int hours;
         private static int minutes;
         private static int seconds;
-        private static string selected = string.Empty;
+        private static string selectedPrev = string.Empty;
 
         public Form1()
         {
@@ -35,35 +35,38 @@ namespace TrackYourself
 
         private void MyTimer_Tick(object sender, EventArgs e)
         {
-            if (seconds > 59)
+            if (selectedPrev != (string)comboBox1.SelectedValue)
             {
-                seconds = 0;
-                minutes++;
-            }
-            if (minutes > 59)
-            {
-                minutes = 0;
-                hours++;
-            }
-            string zerosMinutes = minutes > 9 ? minutes.ToString() : $"0{minutes}";
-            string zerosSeconds = seconds > 9 ? seconds.ToString() : $"0{seconds}";
+                if (seconds > 59)
+                {
+                    seconds = 0;
+                    minutes++;
+                }
+                if (minutes > 59)
+                {
+                    minutes = 0;
+                    hours++;
+                }
+                string zerosMinutes = minutes > 9 ? minutes.ToString() : $"0{minutes}";
+                string zerosSeconds = seconds > 9 ? seconds.ToString() : $"0{seconds}";
 
-            Text = $"{DateTime.Now:HH:mm} - {selected} - {hours}:{zerosMinutes}:{zerosSeconds}";
+                Text = $"{DateTime.Now:HH:mm} - {selectedPrev} - {hours}:{zerosMinutes}:{zerosSeconds}";
 
-            seconds++;
+                seconds++;
+            }
         }
 
         private void ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(selected)) // TEMPORARY !!!!!!!!!!!!!!!! && (hours > 0 || minutes > 1)) !!!!!!!!!!!!!!!!!!!!!!
+            if (!string.IsNullOrEmpty(selectedPrev)) // TEMPORARY !!!!!!!!!!!!!!!! && (hours > 0 || minutes > 1)) !!!!!!!!!!!!!!!!!!!!!!
             {
-                AppDbAccessor.RecordSave2(selected, selectedStart, new TimeSpan(hours, minutes, seconds));
+                AppDbAccessor.RecordSave2(selectedPrev, selectedStart, new TimeSpan(hours, minutes, seconds));
             }
 
             hours = 0;
             minutes = 0;
             seconds = 0;
-            selected = (string)comboBox1.SelectedValue;
+            selectedPrev = (string)comboBox1.SelectedValue;
             selectedStart = DateTime.Now;
         }
 
