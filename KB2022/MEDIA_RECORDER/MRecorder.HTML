@@ -1,50 +1,39 @@
 <!DOCTYPE html>
 <html lang="en-us">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <title>Web dictophone</title>
-    <link href="MRecStyles.css" rel="stylesheet" type="text/css">
-</head>
-<body>
 
-    <div class="wrapper">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title>Web dictophone</title>
+        <link href="MRecStyles.css" rel="stylesheet" type="text/css">
+    </head>
 
-        <header>
-            <h1>Web dictophone</h1>
-        </header>
-
-        <section class="main-controls">
-
-            <canvas class="visualizer"></canvas>
-
-            <div id="buttons">
-                <button class="record">Record</button>
-                <button class="stop">Stop</button>
+    <body>
+        <div id="wrapper">
+            <p>
+                Click the "Start Recording" button to begin video recording for a few seconds.
+                You can stop recording by clicking the "Stop Recording" button. The "Download"
+                button will download the received data (although it's in a raw, unwrapped form
+                that isn't very useful).
+            </p>
+            <br />
+            <div class="left">
+                <div id="startButton" class="button">Start Recording</div>
+                <h2>Preview</h2>
+                <video id="preview" width="160" height="120" autoplay muted></video>
+            </div>
+            <div class="right">
+                <div id="stopButton" class="button">Stop Recording</div>
+                <h2>Recording</h2>
+                <video id="recording" width="160" height="120" controls></video>
+                <a id="downloadButton" class="button"> Download </a>
+            </div>
+            <div class="bottom">
+                <pre id="log"></pre>
             </div>
 
-        </section>
+            <script src="MRecApp.js"></script>
+        </div>
+    </body>
 
-        <section class="sound-clips">
-        </section>
-
-    </div>
-
-    <label for="toggle">❔</label>
-    <input type="checkbox" id="toggle">
-
-    <!-- ASIDE -->
-    <aside>
-        <h2>Information</h2>
-        <p>
-            Web dictaphone is built using <a href="https://developer.mozilla.org/en-US/docs/Web/API/Navigator.getUserMedia">getUserMedia</a> and the <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder_API">MediaRecorder API</a>, which provides an easier way to capture Media streams.
-        </p>
-        <p>
-            Icon courtesy of <a href="http://findicons.com/search/microphone">Find Icons</a>. Thanks to <a href="http://soledadpenades.com/">Sole</a> for the Oscilloscope code!
-        </p>
-    </aside>
-
-    <script src="MRecApp.js"></script>
-
-</body>
 </html>

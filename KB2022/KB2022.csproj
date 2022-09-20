@@ -189,7 +189,6 @@
 
   <ItemGroup>
     <Folder Include="CODE_FILES\" />
-    <Folder Include="MEDIA_RECORDER\" />
   </ItemGroup>
 
 </Project>
