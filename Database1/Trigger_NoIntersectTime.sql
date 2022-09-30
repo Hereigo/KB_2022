@@ -9,35 +9,46 @@ CREATE TABLE dbo.Table1
 	Id INT NOT NULL IDENTITY PRIMARY KEY,
 	Name VARCHAR(30) NOT NULL,
 	StartedAt DATETIME NOT NULL,
-	MinutesDuration INT NOT NULL
+	MinutesDuration INT NOT NULL,
+	Comment VARCHAR(30)
 )
 GO
 
--- IF NOT EXISTS(SELECT * FROM SYS.TRIGGERS WHERE NAME='TR_NoIntersectTimeSlot_Table1')
+DROP TRIGGER IF EXISTS dbo.TR_NoIntersectTimeSlot_Table1
+GO
 CREATE TRIGGER TR_NoIntersectTimeSlot_Table1 on dbo.Table1 INSTEAD OF INSERT
 AS
 BEGIN
 	IF NOT EXISTS (
 		SELECT 1 FROM dbo.Table1 e
-		INNER JOIN INSERTED i
-		--ON i.StartedAt <= e.StartedAt AND DATEADD(MINUTE, i.MinutesDuration, i.StartedAt) >= e.StartedAt
-		--OR i.StartedAt > e.StartedAt AND i.StartedAt < DATEADD(MINUTE, e.MinutesDuration, e.StartedAt)
-		ON e.StartedAt < DATEADD(MINUTE, i.MinutesDuration, i.StartedAt) 
-			AND DATEADD(MINUTE, e.MinutesDuration, e.StartedAt) > i.StartedAt
-	)
+		WHERE EXISTS (
+			SELECT 1 FROM INSERTED i
+			WHERE
+				i.StartedAt < DATEADD(MINUTE, e.MinutesDuration, e.StartedAt)
+				AND e.StartedAt < DATEADD(MINUTE, i.MinutesDuration, i.StartedAt)
+				AND e.Comment = 'Ok'
+			)
+	) 
 	BEGIN
 		INSERT INTO dbo.Table1
-		(Name, StartedAt, MinutesDuration)
-		SELECT Name, StartedAt, MinutesDuration
+		(Name, StartedAt, MinutesDuration, Comment)
+		SELECT Name, StartedAt, MinutesDuration, 'Ok'
 		FROM INSERTED
 	END
-
+	
 	ELSE
 	BEGIN
-		RAISERROR('Time slot intersect with some other.', 16, 1)
+		INSERT INTO dbo.Table1
+		(Name, StartedAt, MinutesDuration, Comment)
+		SELECT Name, StartedAt, MinutesDuration, 'Wrong!!!'
+		FROM INSERTED
+		-- OR --
+		--RAISERROR('Time slot intersect with some other.', 16, 1)
 	END
 END
 GO
+----------------------------------------------------
+
 ----------------------------------------------------
 -- TEST
 ----------------------------------------------------
@@ -90,4 +101,4 @@ VALUES
 ('Donald', DATEADD(MINUTE, 5, @MyDate), 30)
 GO
 
-SELECT * FROM dbo.Table1
+SELECT * FROM dbo.Table1 ORDER BY StartedAt
