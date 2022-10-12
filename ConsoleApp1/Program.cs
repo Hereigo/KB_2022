@@ -72,6 +72,7 @@ class TestAttributes
     static void Main()
     {
         Student s = new Student();
+
         s.setDetails(1, "Taylor", 92.5);
 
         Console.WriteLine("Student Details");
