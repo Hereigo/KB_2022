@@ -8,20 +8,23 @@ namespace KB2022.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IWebHostEnvironment _webHostEnvironment;
+        private readonly string _codefilesFolder = "CODE_FILES";
+        private readonly string _codefilesPath;
+        private readonly string _wwwrootDir;
 
         public HomeController(ILogger<HomeController> logger, IWebHostEnvironment webHostEnvironment)
         {
             _logger = logger;
             _webHostEnvironment = webHostEnvironment;
+            _wwwrootDir = _webHostEnvironment.ContentRootPath;
+            _codefilesPath = Path.Combine(_wwwrootDir, _codefilesFolder);
         }
 
         public IActionResult Index()
         {
             var data = new List<CodeDefinition>();
-            var wwwrootDir = _webHostEnvironment.ContentRootPath;
-            var path = Path.Combine(wwwrootDir, "CODE_FILES");
 
-            foreach (var filePath in Directory.GetFiles(path))
+            foreach (var filePath in Directory.GetFiles(_codefilesPath))
             {
                 var fileExten = Path.GetExtension(filePath);
                 var fileTitle = System.IO.File.ReadLines(filePath).First().Replace("//", "").Trim();

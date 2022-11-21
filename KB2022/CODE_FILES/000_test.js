@@ -1,4 +1,4 @@
-﻿// ...
+﻿// Just JS code test.
 
 const ClientRawData = () => {
 
